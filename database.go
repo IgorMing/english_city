@@ -8,29 +8,61 @@ import (
 )
 
 const (
-	host     = "localhost"
-	port     = 5432
 	user     = "igor"
 	password = "Igor1993"
 	dbname   = "english_city"
 )
 
-func foo() {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+var database *sql.DB
+
+func connect() error {
+	psqlInfo := fmt.Sprintf("user=%s "+
 		"password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
+		user, password, dbname)
 
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
-	defer db.Close()
-
 	err = db.Ping()
+	if err != nil {
+		return err
+	}
+
+	database = db
+	fmt.Println("Connected with success")
+	return nil
+}
+
+func disconnect() {
+	database.Close()
+}
+
+func makeSelect(query string) {
+	rows, err := database.Query("SELECT * FROM room")
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println("Connected with success")
+	for rows.Next() {
+		var room Room
+		err = rows.Scan(&room.ID, &room.Name)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println("id | name")
+		fmt.Printf("%3v | %8v\n", room.ID, room.Name)
+	}
 }
+
+// 	fmt.Println("# Inserting values")
+//
+// 	var lastInsertId int
+// 	err = db.QueryRow("INSERT INTO room(name) VALUES($1) returning id;", "testando!!!").Scan(&lastInsertId)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	fmt.Println("last inserted id =", lastInsertId)
+// }
