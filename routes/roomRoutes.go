@@ -1,6 +1,10 @@
-package main
+package routes
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/IgorMing/english_city/handlers"
+)
 
 type Route struct {
 	Name        string
@@ -11,35 +15,41 @@ type Route struct {
 
 type Routes []Route
 
-var routes = Routes{
+var roomRoutes = Routes{
 	Route{
 		"Index",
 		"GET",
 		"/",
-		indexHandler,
+		handlers.IndexHandler,
 	},
 	Route{
 		"Rooms",
 		"GET",
 		"/rooms",
-		roomsHandler,
+		handlers.RoomsHandler,
 	},
 	Route{
 		"RoomById",
 		"GET",
 		"/rooms/{id}",
-		roomsByIDHandler,
+		handlers.RoomsByIDHandler,
 	},
 	Route{
 		"AddRoom",
 		"POST",
 		"/rooms",
-		addRoomHandler,
+		handlers.AddRoomHandler,
+	},
+	Route{
+		"UpdateRoom",
+		"PUT",
+		"/rooms/{id}",
+		handlers.UpdateRoomHandler,
 	},
 	Route{
 		"DeleteRoom",
 		"DELETE",
 		"/rooms/{id}",
-		deleteRoomHandler,
+		handlers.DeleteRoomHandler,
 	},
 }
