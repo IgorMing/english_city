@@ -1,31 +1,31 @@
 package database
 
 import (
-	"github.com/IgorMing/english_city/structs"
+	ec "github.com/IgorMing/english_city"
 	"github.com/IgorMing/english_city/utils"
 )
 
-func GetRooms() (structs.Rooms, error) {
+func GetRooms() (ec.Rooms, error) {
 	rows, err := database.Query("SELECT id, name FROM room")
 	if err != nil {
-		return structs.Rooms{}, utils.HandleError("Error executing the query", err)
+		return ec.Rooms{}, utils.HandleError("Error executing the query", err)
 	}
 
-	var rooms structs.Rooms
+	var rooms ec.Rooms
 	for rows.Next() {
-		var room structs.Room
+		var room ec.Room
 		if err := rows.Scan(&room.ID, &room.Name); err != nil {
-			return structs.Rooms{}, utils.HandleError("Error scanning the query", err)
+			return ec.Rooms{}, utils.HandleError("Error scanning the query", err)
 		}
 		rooms = append(rooms, room)
 	}
 	if err := rows.Err(); err != nil {
-		return structs.Rooms{}, utils.HandleError("", err)
+		return ec.Rooms{}, utils.HandleError("", err)
 	}
 	return rooms, nil
 }
 
-func InsertRoom(room structs.Room) (int, error) {
+func InsertRoom(room ec.Room) (int, error) {
 	var lastInsertID int
 	err := database.QueryRow("INSERT INTO room(name) VALUES($1) returning id;", room.Name).Scan(&lastInsertID)
 	if err != nil {
@@ -48,15 +48,15 @@ func DeleteRoom(id int) error {
 	return nil
 }
 
-func UpdateRoom(id int, room structs.Room) (structs.Room, error) {
+func UpdateRoom(id int, room ec.Room) (ec.Room, error) {
 	stmt, err := database.Prepare("UPDATE room SET name=$1 WHERE id=$2")
 	if err != nil {
-		return structs.Room{}, utils.HandleError("Error preparing update", err)
+		return ec.Room{}, utils.HandleError("Error preparing update", err)
 	}
 
 	_, err = stmt.Exec(room.Name, id)
 	if err != nil {
-		return structs.Room{}, utils.HandleError("Error while updating row", err)
+		return ec.Room{}, utils.HandleError("Error while updating row", err)
 	}
 
 	room.ID = id

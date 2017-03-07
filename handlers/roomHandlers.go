@@ -9,7 +9,7 @@ import (
 	"strconv"
 
 	"github.com/IgorMing/english_city/database"
-	"github.com/IgorMing/english_city/structs"
+	ec "github.com/IgorMing/english_city"
 	"github.com/gorilla/mux"
 )
 
@@ -39,7 +39,7 @@ func RoomsByIDHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func AddRoomHandler(w http.ResponseWriter, r *http.Request) {
-	var room structs.Room
+	var room ec.Room
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 	if err != nil {
 		panic(err)
@@ -91,7 +91,7 @@ func DeleteRoomHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateRoomHandler(w http.ResponseWriter, r *http.Request) {
-	var room structs.Room
+	var room ec.Room
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
