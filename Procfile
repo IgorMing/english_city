@@ -1,1 +1,1 @@
-web: english-city
+web: cmd/cmd
