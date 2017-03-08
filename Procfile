@@ -1,1 +1,1 @@
-web: english_city
+web: english-city
