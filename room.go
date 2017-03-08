@@ -1,4 +1,4 @@
-package english_city
+package englishcity
 
 type Room struct {
 	ID   int    `json:"id"`

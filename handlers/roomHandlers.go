@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/IgorMing/english_city/database"
-	ec "github.com/IgorMing/english_city"
+	"github.com/IgorMing/englishcity/database"
+	ec "github.com/IgorMing/englishcity"
 	"github.com/gorilla/mux"
 )
 

@@ -4,14 +4,14 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/IgorMing/english_city/utils"
+	"github.com/IgorMing/englishcity/utils"
 	_ "github.com/lib/pq"
 )
 
 const (
 	user     = "igor"
 	password = "Igor1993"
-	dbname   = "english_city"
+	dbname   = "englishcity"
 )
 
 var database *sql.DB

@@ -1,8 +1,8 @@
 package database
 
 import (
-	ec "github.com/IgorMing/english_city"
-	"github.com/IgorMing/english_city/utils"
+	ec "github.com/IgorMing/englishcity"
+	"github.com/IgorMing/englishcity/utils"
 )
 
 func GetRooms() (ec.Rooms, error) {

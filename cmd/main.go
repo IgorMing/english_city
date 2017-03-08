@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/IgorMing/english_city/database"
-	"github.com/IgorMing/english_city/routes"
+	"github.com/IgorMing/englishcity/database"
+	"github.com/IgorMing/englishcity/routes"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/IgorMing/english_city/logger"
+	"github.com/IgorMing/englishcity/logger"
 	"github.com/gorilla/mux"
 )
 

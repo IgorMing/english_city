@@ -3,7 +3,7 @@ package routes
 import (
 	"net/http"
 
-	"github.com/IgorMing/english_city/handlers"
+	"github.com/IgorMing/englishcity/handlers"
 )
 
 type Route struct {
