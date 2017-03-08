@@ -1,9 +1,6 @@
 {
-	"ImportPath": "english-city",
-	"GoVersion": "go1.5",
-	"GodepVersion": "v74",
-	"Packages": [
-		"github.com/IgorMing/english-city/database"
-	],
+	"ImportPath": "github.com/IgorMing/english-city",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v79",
 	"Deps": []
 }
