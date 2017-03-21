@@ -18,6 +18,8 @@ func main() {
 
 	fmt.Printf("Running server on port %s\n", port)
 	router := routes.NewRouter()
-	database.Connect()
+	if err := database.Connect(); err != nil {
+		log.Println("Error connecting to the database", err)
+	}
 	log.Fatal(http.ListenAndServe(":"+port, router))
 }

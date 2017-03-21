@@ -8,14 +8,13 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/IgorMing/englishcity/database"
 	ec "github.com/IgorMing/englishcity"
+	"github.com/IgorMing/englishcity/database"
 	"github.com/gorilla/mux"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Welcome to index")
-	database.GetRooms()
+	fmt.Fprintln(w, "Nothing to see here, mate.")
 }
 
 func RoomsHandler(w http.ResponseWriter, r *http.Request) {
@@ -27,7 +26,8 @@ func RoomsHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	if err := json.NewEncoder(w).Encode(rooms); err != nil {
+	err = json.NewEncoder(w).Encode(rooms)
+	if err != nil {
 		panic(err)
 	}
 }

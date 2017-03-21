@@ -1,2 +1,3 @@
 englishcity
-src/
+*.tar
+cmd/cmd
